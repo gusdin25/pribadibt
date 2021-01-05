@@ -474,7 +474,7 @@ if (text.includes('.Teksneon')){
 conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
 }
 if (text.includes('.teksneon')){
-  const teks = text.replace(/.neon /, '')
+  const teks = text.replace(/.teksneon /, '')
     axios.get(`https://tobz-api.herokuapp.com/api/textpro?theme=neon_light&text=${teks}`)
     .then((res) => {
       imageToBase64(res.data.result)
