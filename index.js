@@ -18,7 +18,7 @@ const apibarbar = 'Apikey mhankbarbar';
 const apiafara = 'rqdxI-aFmVq-mxUwR-PYXfR';
 const BotName = 'Gus Bot'; 
 const instagram = '@gusdin_'; 
-const aktif = '24 Jam';
+const aktif = 'Sesuai Jaringan';
 const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
             + 'VERSION:3.0\n' 
             + 'FN:Gus Din\n' // Nama kamu
@@ -142,6 +142,9 @@ conn.sendMessage(id, 'Ngentod Bapak kau_-' ,MessageType.text);
 }
 else if (text == 'Anjing'){
 conn.sendMessage(id, 'Jangan toxic anjing' ,MessageType.text);
+}
+else if (text == 'Babi'){
+conn.sendMessage(id, 'elu babi, anjing!' ,MessageType.text);
 }
 else if (text == 'Bacot'){
 conn.sendMessage(id, 'lu bacot_-' ,MessageType.text);
@@ -410,6 +413,40 @@ if (text.includes('.map')){
     })
 }
 
+if (text.includes('.Randomhentai')){
+conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
+}
+if (text.includes('.randomhentai')){
+  var teks = text.replace(/.randomhentai /, '')
+    axios.get('https://tobz-api.herokuapp.com/api/hentai')
+    .then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, '[WAIT] Jangan sange, silakan tunggu', MessageType.text)
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}
+
+if (text.includes('.Randomcry')){
+conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
+}
+if (text.includes('.randomcry')){
+  var teks = text.replace(/.randomcry /, '')
+    axios.get('https://tobz-api.herokuapp.com/api/cry')
+    .then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, '[WAIT] Jangan sange, silakan tunggu', MessageType.text)
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf, MessageType.image)
+        })
+    })
+}
+
   //Tag
 if (text.includes('.Tagme')){
 conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
@@ -421,6 +458,12 @@ if (text.includes('.tagme')) {
        contextInfo: { mentionedJid: [nomor] }
  }
  conn.sendMessage(id, options, MessageType.text)
+}
+
+if (text.includes(".tts")){
+const teks = text.replace(/.tts /, "")
+const gtts = (`https://rest.farzain.com/api/tts.php?id=${teks}`)
+    conn.sendMessage(id, gtts ,MessageType.text);
 }
 
 if (text.includes(".spamcall")){
@@ -457,7 +500,7 @@ conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.tex
 }
 if (text.includes('.nulis')){
   const teks = text.replace(/.nulis /, '')
-    axios.get(`http://salism3.pythonanywhere.com/write?text=${teks}`)
+    axios.get('http://salism3.pythonanywhere.com/write?text=${teks}')
     .then((res) => {
       imageToBase64(res.data.result)
         .then(
@@ -486,7 +529,41 @@ if (text.includes('.teksneon')){
         })
     })
 }
-	
+
+if (text.includes('.Teksblackpink')){
+conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
+}
+if (text.includes('.teksblackpink')){
+  const teks = text.replace(/.teksblackpink /, '')
+    axios.get(`https://docs-jojo.herokuapp.com/api/blackpink?text=${teks}`)
+    .then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, '[ WAIT ] Sedang Memuat ⏳ silahkan tunggu', MessageType.text, { quoted: m } )
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf ,MessageType.image, { quoted: m } )
+        })
+    })
+}
+
+if (text.includes('.Tekspetir')){
+conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
+}
+if (text.includes('.tekspetir')){
+  const teks = text.replace(/.tekspetir /, '')
+    axios.get(`https://docs-jojo.herokuapp.com/api/thunder?text=${teks}`)
+    .then((res) => {
+      imageToBase64(res.data.result)
+        .then(
+          (ress) => {
+            conn.sendMessage(id, '[ WAIT ] Sedang Memuat ⏳ silahkan tunggu', MessageType.text, { quoted: m } )
+            var buf = Buffer.from(ress, 'base64')
+            conn.sendMessage(id, buf ,MessageType.image, { quoted: m } )
+        })
+    })
+}
+
   //Pengucapan ulang
 if (text.includes('.Say')){
 conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
@@ -501,7 +578,7 @@ conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.tex
 }
 if (text.includes('.ytmp4')){
 const teks = text.replace(/.ytmp4 /, "")
-axios.get(`https://tobz-api.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
+axios.get(`https://st4rz.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
 	conn.sendMessage(id, '[ WAIT ] Mendownload...⏳ silahkan tunggu', MessageType.text, {quoted: m } )
     let hasil = `Klik link dan download hasilnya️\n*Judul* : ${res.data.title}\n*Ukuran* : ${res.data.filesize}\n*Format* : MP4\n*Link* : ${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text, { quoted: m } );
@@ -1127,18 +1204,6 @@ axios.get(`https://tobz-api.herokuapp.com/api/shorturl?url=${teks}`).then((res) 
 })
 }
 
- //Prn
-if (text.includes('.Prn')){
-conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
-}
-if (text.includes(".prn")){
-const teks = text.replace(/.prn /, "")
-axios.get(`https://mnazria.herokuapp.com/api/porn?search=${teks}`).then((res) => {
-    let hasil = `${res.data.result}`;
-    conn.sendMessage(id, hasil ,MessageType.text, { quoted: m } );
-})
-}
-
   //Text to pict
 if (text.includes('.Logopornhub')){
 conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
@@ -1275,7 +1340,8 @@ if (text.includes('.kata')){
     const gh = text.split(".kata ")[1];
     const kata = gh.split("/")[0];
     const author = gh.split("/")[1];
-    axios.get(`https://terhambar.com/aw/qts/?kata=${kata}&author=${author}&tipe=rain`)
+    const bg = gh.split("/")[2];
+    axios.get(`https://terhambar.com/aw/qts/?kata=${kata}&author=${author}&tipe=${bg}`)
     .then((res) => {
       imageToBase64(res.data.result)
         .then(
@@ -1386,7 +1452,7 @@ conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.tex
 if (text.includes(".simi")){
 const teks = text.replace(/.simi /, "")
 axios.get(`https://st4rz.herokuapp.com/api/simsimi?kata=${teks}`).then((res) => {
-    let hasil = `${res.data.result}\n\n*Simsimi chat*`;
+    let hasil = `${res.data.result}`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
 }
