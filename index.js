@@ -413,40 +413,6 @@ if (text.includes('.map')){
     })
 }
 
-if (text.includes('.Randomhentai')){
-conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
-}
-if (text.includes('.randomhentai')){
-  var teks = text.replace(/.randomhentai /, '')
-    axios.get('https://tobz-api.herokuapp.com/api/hentai')
-    .then((res) => {
-      imageToBase64(res.data.result)
-        .then(
-          (ress) => {
-            conn.sendMessage(id, '[WAIT] Jangan sange, silakan tunggu', MessageType.text)
-            var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, buf, MessageType.image)
-        })
-    })
-}
-
-if (text.includes('.Randomcry')){
-conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
-}
-if (text.includes('.randomcry')){
-  var teks = text.replace(/.randomcry /, '')
-    axios.get('https://tobz-api.herokuapp.com/api/cry')
-    .then((res) => {
-      imageToBase64(res.data.result)
-        .then(
-          (ress) => {
-            conn.sendMessage(id, '[WAIT] Jangan sange, silakan tunggu', MessageType.text)
-            var buf = Buffer.from(ress, 'base64')
-            conn.sendMessage(id, buf, MessageType.image)
-        })
-    })
-}
-
   //Tag
 if (text.includes('.Tagme')){
 conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
@@ -458,12 +424,6 @@ if (text.includes('.tagme')) {
        contextInfo: { mentionedJid: [nomor] }
  }
  conn.sendMessage(id, options, MessageType.text)
-}
-
-if (text.includes(".tts")){
-const teks = text.replace(/.tts /, "")
-const gtts = (`https://rest.farzain.com/api/tts.php?id=${teks}`)
-    conn.sendMessage(id, gtts ,MessageType.text);
 }
 
 if (text.includes(".spamcall")){
